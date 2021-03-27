@@ -24,16 +24,18 @@ export default function App() {
       } = await Location.getCurrentPositionAsync();
       setCurrentLatitude(latitude);
       setCurrentLongitude(longitude);  
-      //Api(String(latitude),String(longitude))
+      Api(latitude, longitude)
        
       
   };
   
   function Api(lati, long){
     const data = { 
-      latitude: lati,
-      longitude: long
-     };
+      location: { 
+        type: "Point" , 
+        coordinates: [long, lati ] 
+      } 
+    };
   
     fetch('http://192.168.18.9:8000/api/locais/', {
       method: 'POST',
